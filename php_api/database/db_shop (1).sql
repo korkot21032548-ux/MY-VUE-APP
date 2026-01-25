@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 18, 2026 at 12:21 PM
+-- Generation Time: Jan 25, 2026 at 12:38 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -28,12 +28,12 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `customers` (
-  `customer_id` int(11) NOT NULL,
+  `customer_id` int(8) UNSIGNED ZEROFILL NOT NULL,
   `firstName` varchar(50) NOT NULL,
   `lastName` varchar(50) NOT NULL,
   `phone` varchar(15) NOT NULL,
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL
+  `password` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -41,9 +41,10 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `firstName`, `lastName`, `phone`, `username`, `password`) VALUES
-(1, 'สมชาย', 'ใจดี', '0812345678', 'somchai', 'pass1234'),
-(2, 'วิภา', 'สุขสันต์', '0898765432', 'wipa', 'wipa2025'),
-(3, 'John', 'Doe', '0991122334', 'johnd', 'securepwd');
+(00000001, 'สมชาย', 'ใจดี', '0812345678', 'somchai', 'pass1234'),
+(00000002, 'วิภา', 'สุขสันต์', '0898765432', 'wipa', 'wipa2025'),
+(00000003, 'John', 'Doe', '0991122334', 'johnd', 'securepwd'),
+(00000004, 'to', 'namo', '0123456789', 'Admin', '$2y$10$pcSd1I22JRMgY');
 
 -- --------------------------------------------------------
 
@@ -52,7 +53,7 @@ INSERT INTO `customers` (`customer_id`, `firstName`, `lastName`, `phone`, `usern
 --
 
 CREATE TABLE `employee` (
-  `emp_id` varchar(10) NOT NULL,
+  `emp_id` int(8) UNSIGNED ZEROFILL NOT NULL,
   `full_name` varchar(100) NOT NULL,
   `department` varchar(50) NOT NULL,
   `salary` decimal(10,2) NOT NULL,
@@ -65,10 +66,36 @@ CREATE TABLE `employee` (
 --
 
 INSERT INTO `employee` (`emp_id`, `full_name`, `department`, `salary`, `active`, `created_at`) VALUES
-('EMP001', 'สมชาย ใจดี', 'IT', '35000.00', 1, '2026-01-18 10:29:01'),
-('EMP002', 'สมหญิง ดีงาม', 'บัญชี', '28000.00', 1, '2026-01-18 10:29:01'),
-('EMP003', 'อนันต์ สุขใจ', 'การตลาด', '25000.00', 0, '2026-01-18 10:29:01'),
-('EMP004', 'สุดา พรมดี', 'ทรัพยากรบุคคล', '32000.00', 1, '2026-01-18 10:29:01');
+(00000001, 'สมชาย ใจดี', 'IT', '35000.00', 1, '2026-01-18 10:29:01'),
+(00000002, 'สมหญิง ดีงาม', 'บัญชี', '28000.00', 1, '2026-01-18 10:29:01'),
+(00000003, 'อนันต์ สุขใจ', 'การตลาด', '25000.00', 0, '2026-01-18 10:29:01'),
+(00000004, 'สุดา พรมดี', 'ทรัพยากรบุคคล', '32000.00', 1, '2026-01-18 10:29:01'),
+(00000005, 'ั่เแ่ดแ่ด', 'เแ่้เ้อ่เ่', '1256574.00', 1, '2026-01-25 10:25:29');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+CREATE TABLE `products` (
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(100) NOT NULL,
+  `description` text DEFAULT NULL,
+  `price` decimal(10,2) NOT NULL,
+  `image` text DEFAULT NULL,
+  `stock` int(11) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `products`
+--
+
+INSERT INTO `products` (`product_id`, `product_name`, `description`, `price`, `image`, `stock`, `created_at`) VALUES
+(1, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', '199.00', '1.jpg', 50, '2026-01-25 10:44:28'),
+(2, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', '799.00', '4.jpg', 30, '2026-01-25 10:44:28'),
+(3, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', '1299.00', '3.jpg', 20, '2026-01-25 10:44:28');
 
 -- --------------------------------------------------------
 
@@ -106,6 +133,12 @@ ALTER TABLE `employee`
   ADD PRIMARY KEY (`emp_id`);
 
 --
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`product_id`);
+
+--
 -- Indexes for table `type`
 --
 ALTER TABLE `type`
@@ -119,7 +152,19 @@ ALTER TABLE `type`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `customer_id` int(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `employee`
+--
+ALTER TABLE `employee`
+  MODIFY `emp_id` int(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `type`
