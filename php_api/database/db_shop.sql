@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 25, 2026 at 12:38 PM
+-- Generation Time: Feb 15, 2026 at 12:24 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -58,6 +58,7 @@ CREATE TABLE `employee` (
   `department` varchar(50) NOT NULL,
   `salary` decimal(10,2) NOT NULL,
   `active` tinyint(1) DEFAULT 1,
+  `image` varchar(50) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -65,12 +66,13 @@ CREATE TABLE `employee` (
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`emp_id`, `full_name`, `department`, `salary`, `active`, `created_at`) VALUES
-(00000001, 'สมชาย ใจดี', 'IT', '35000.00', 1, '2026-01-18 10:29:01'),
-(00000002, 'สมหญิง ดีงาม', 'บัญชี', '28000.00', 1, '2026-01-18 10:29:01'),
-(00000003, 'อนันต์ สุขใจ', 'การตลาด', '25000.00', 0, '2026-01-18 10:29:01'),
-(00000004, 'สุดา พรมดี', 'ทรัพยากรบุคคล', '32000.00', 1, '2026-01-18 10:29:01'),
-(00000005, 'ั่เแ่ดแ่ด', 'เแ่้เ้อ่เ่', '1256574.00', 1, '2026-01-25 10:25:29');
+INSERT INTO `employee` (`emp_id`, `full_name`, `department`, `salary`, `active`, `image`, `created_at`) VALUES
+(00000001, 'สมชาย ใจดี', 'IT', '35000.00', 1, '', '2026-01-18 10:29:01'),
+(00000002, 'สมหญิง ดีงาม', 'บัญชี', '28000.00', 1, '', '2026-01-18 10:29:01'),
+(00000003, 'อนันต์ สุขใจ', 'การตลาด', '25000.00', 0, '', '2026-01-18 10:29:01'),
+(00000004, 'สุดา พรมดี', 'ทรัพยากรบุคคล', '32000.00', 1, '', '2026-01-18 10:29:01'),
+(00000005, '55555555', 'เแ่้เ้อ่เ่', '1256574.00', 1, '1771154496_ROV1.jpg', '2026-01-25 10:25:29'),
+(00007780, '2222222', '2222222222', '99999999.99', 1, '1771154508_ROV1.jpg', '2026-02-15 11:21:48');
 
 -- --------------------------------------------------------
 
@@ -94,8 +96,8 @@ CREATE TABLE `products` (
 
 INSERT INTO `products` (`product_id`, `product_name`, `description`, `price`, `image`, `stock`, `created_at`) VALUES
 (1, 'เสื้อยืดคอกลม', 'เสื้อยืดผ้าฝ้าย 100% สวมใส่สบาย', '199.00', '1.jpg', 50, '2026-01-25 10:44:28'),
-(2, 'กางเกงยีนส์', 'กางเกงยีนส์ทรงกระบอก สีฟ้าอ่อน', '799.00', '4.jpg', 30, '2026-01-25 10:44:28'),
-(3, 'รองเท้าผ้าใบ', 'รองเท้าผ้าใบสีขาว ใส่ได้ทุกโอกาส', '1299.00', '3.jpg', 20, '2026-01-25 10:44:28');
+(2, 'ไอริ dimension', 'สกินอันสวยงาม', '10000.00', '1771146653_ROV1.jpg', 100, '2026-01-25 10:44:28'),
+(3, 'นาคอส dimension', 'คนหล่อเท่านั้นที่เล่นได้', '12990.00', '1771145423_ROV.jpg', 1000, '2026-01-25 10:44:28');
 
 -- --------------------------------------------------------
 
@@ -158,13 +160,13 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `emp_id` int(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `emp_id` int(8) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7782;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `type`
